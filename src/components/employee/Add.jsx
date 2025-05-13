@@ -3,71 +3,95 @@ import { fetchDepartments } from '../../utils/EmployeeHelper';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
 const Add = () => { 
-
     const navigate = useNavigate();
-    
     const [departments, setDepartments] = useState([]);
-
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const getDepartments = async () => {
-            const departments = await fetchDepartments()
-            setDepartments(departments)
-        }
+            try {
+                const departments = await fetchDepartments();
+                setDepartments(departments);
+            } catch (error) {
+                setError("Failed to fetch departments");
+                console.error("Error fetching departments:", error);
+            }
+        };
         getDepartments();
     }, []);
 
     const handleChange = (e) => {
-        const {name, value, files} = e.target;
-        if(name === "image") {
-            setFormData((prevData) => ({...prevData, [name] : files[0]}))
+        const { name, value, files } = e.target;
+        if (name === "image") {
+            setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
         } else {
-            setFormData((prevData) => ({...prevData, [name] : value}))
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
         }
-    }  
+        setError(""); // Clear error when user makes changes
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log("Dữ liệu đã gửi" , departments)
+        e.preventDefault();
+        setLoading(true);
+        setError("");
 
-        const formDataObj = new FormData()
+        const formDataObj = new FormData();
         Object.keys(formData).forEach((key) => {
-            formDataObj.append(key, formData[key])
-        })
+            formDataObj.append(key, formData[key]);
+        });
 
-        
         try {
             const response = await axios.post(
                 'https://ems-backend-six.vercel.app/api/employee/add',
                 formDataObj,
-                { headers: { "Authorization": `Bearer ${localStorage.getItem('token')}` } }
-            ); 
-        
-            console.log("Server Response:", response.data);
-        
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'multipart/form-data',
+                        'Accept': 'application/json'
+                    },
+                    withCredentials: true
+                }
+            );
+
             if (response.data.success) {
                 alert("Employee added successfully");
                 navigate("/admin-dashboard/employees");
             }
         } catch (error) {
-            console.error("Error Response:", error.response ? error.response.data : error);
+            console.error("Error Response:", error);
             
-            if (error.response?.data?.error?.includes("already registered")) {
-                alert("Employee already exists! Please use a different email or employee ID.");
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                if (error.response.data?.error?.includes("already registered")) {
+                    setError("Employee already exists! Please use a different email or employee ID.");
+                } else {
+                    setError(error.response.data?.error || "Failed to add employee");
+                }
+            } else if (error.request) {
+                // The request was made but no response was received
+                setError("No response from server. Please try again later.");
             } else {
-                alert(error.response?.data?.error || "Something went wrong");
+                // Something happened in setting up the request that triggered an Error
+                setError("An error occurred. Please try again.");
             }
+        } finally {
+            setLoading(false);
         }
-        
-        
-    }
+    };
 
-    return ( 
+    return (
         <div className='max-w-4x1 mx-auto mt-10 bg-white p-8 rounded-md shadow-md'>
-            <h2 className="text-2x1 font-bold mb-6">Add New Employee</h2>  
+            <h2 className="text-2x1 font-bold mb-6">Add New Employee</h2>
+            {error && (
+                <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                    {error}
+                </div>
+            )}
             <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Name */}
@@ -263,9 +287,12 @@ const Add = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md"
+                    disabled={loading}
+                    className={`w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md ${
+                        loading ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
                 >
-                    Add Employee
+                    {loading ? 'Adding Employee...' : 'Add Employee'}
                 </button>
             </form>  
         </div>
