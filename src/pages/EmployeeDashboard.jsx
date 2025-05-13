@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../context/authContext'
-import Sidebar from '../components/employeeDashboard/SideBar.jsx'
+import Sidebar from '../components/employeeDashboard/Sidebar.jsx'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/dashboard/Navbar.jsx'
 const EmployeeDashboard = () => {
