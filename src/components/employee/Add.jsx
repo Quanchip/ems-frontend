@@ -45,7 +45,7 @@ const Add = () => {
 
         try {
             const response = await axios.post(
-                'https://ems-backend-production-8f13.up.railway.app/ api/employee/add',
+                'https://ems-backend-production-8f13.up.railway.app/api/employee/add',
                 formDataObj,
                 {
                     headers: {
