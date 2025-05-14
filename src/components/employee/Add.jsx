@@ -45,15 +45,14 @@ const Add = () => {
 
         try {
             const response = await axios.post(
-                'https://ems-backend-six.vercel.app/api/employee/add',
+                'https://ems-backend-production-8f13.up.railway.app/ api/employee/add',
                 formDataObj,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                        'Content-Type': 'multipart/form-data',
-                        'Accept': 'application/json'
+                        'Content-Type': 'multipart/form-data'
                     },
-                    withCredentials: true
+                    withCredentials: false
                 }
             );
 
@@ -65,18 +64,14 @@ const Add = () => {
             console.error("Error Response:", error);
             
             if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
                 if (error.response.data?.error?.includes("already registered")) {
                     setError("Employee already exists! Please use a different email or employee ID.");
                 } else {
                     setError(error.response.data?.error || "Failed to add employee");
                 }
             } else if (error.request) {
-                // The request was made but no response was received
                 setError("No response from server. Please try again later.");
             } else {
-                // Something happened in setting up the request that triggered an Error
                 setError("An error occurred. Please try again.");
             }
         } finally {

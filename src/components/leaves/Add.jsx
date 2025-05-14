@@ -23,7 +23,7 @@ const Add = () => {
     e.preventDefault();
     try {
         const response = await axios.post(
-          `https://ems-backend-six.vercel.app/api/leave/add`,leave,
+          `https://ems-backend-production-8f13.up.railway.app/api/leave/add`,leave,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,

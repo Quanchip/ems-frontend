@@ -10,7 +10,7 @@ const View = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `https://ems-backend-six.vercel.app/api/employee/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -49,7 +49,7 @@ const View = () => {
             {/* Check if profile image exists before rendering */}
             {employee.userId?.profileImage ? (
               <img
-                src={`https://ems-backend-six.vercel.app/${employee.userId.profileImage}`}
+                src={`https://ems-backend-production-8f13.up.railway.app/${employee.userId.profileImage}`}
                 alt="Employee Profile"
                 className="rounded-full border w-72"
               />

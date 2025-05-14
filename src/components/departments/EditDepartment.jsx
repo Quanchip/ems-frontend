@@ -18,7 +18,7 @@ const EditDepartment = () => {
       setDepLoading(true)
       try {
         const response = await axios.get(
-          `https://ems-backend-six.vercel.app/api/department/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/department/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -45,7 +45,7 @@ const EditDepartment = () => {
     console.log('Dữ liệu đã gửi', department)
     try {
       const response = await axios.put(
-        `https://ems-backend-six.vercel.app/api/department/${id}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/department/${id}`,
         department,
         {
           headers: {

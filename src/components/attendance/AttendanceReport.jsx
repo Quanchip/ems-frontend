@@ -19,7 +19,7 @@ const AttendanceReport = () => {
       }
 
       const response = await axios.get(
-        `https://ems-backend-six.vercel.app/api/attendance/report?${query.toString()}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/attendance/report?${query.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
