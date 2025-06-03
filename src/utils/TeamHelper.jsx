@@ -42,7 +42,7 @@ export const TeamButtons = ({ _id, onTeamDelete }) => {
     if (confirm) {
       try {
         const response = await axios.delete(
-          `http://localhost:5000/api/team/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/team/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,

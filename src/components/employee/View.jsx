@@ -10,7 +10,7 @@ const View = () => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -48,7 +48,7 @@ const View = () => {
           <div className="flex flex-col items-center w-full md:w-1/3">
             {employee.userId?.profileImage ? (
               <img
-                src={`http://localhost:5000/${employee.userId.profileImage}`}
+                src={`https://ems-backend-production-8f13.up.railway.app/${employee.userId.profileImage}`}
                 alt="Employee Profile"
                 className="rounded-full border-4 border-blue-300 shadow-lg w-48 h-48 object-cover mb-4"
               />

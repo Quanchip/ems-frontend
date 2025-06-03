@@ -34,7 +34,7 @@ const AddTeam = () => {
     e.preventDefault()
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/team/add',
+        'https://ems-backend-production-8f13.up.railway.app/api/team/add',
         team,
         {
           headers: {

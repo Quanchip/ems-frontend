@@ -22,7 +22,7 @@ const AddDepartment = () => {
         e.preventDefault()
         console.log("Dữ liệu đã gửi" , department)
         try {
-            const response = await axios.post('http://localhost:5000/api/department/add', department, {
+            const response = await axios.post('https://ems-backend-production-8f13.up.railway.app/api/department/add', department, {
                 headers: {
                     "Authorization" : `Bearer ${localStorage.getItem('token')}`
                 }

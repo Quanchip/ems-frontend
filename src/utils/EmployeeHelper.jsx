@@ -47,7 +47,7 @@ export const fetchDepartments = async () => {
     let departments
 
     try {
-      const response = await axios.get('http://localhost:5000/api/department', {
+      const response = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/department', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -70,7 +70,7 @@ export const fetchDepartments = async () => {
     let employees
 
     try {
-      const responnse = await axios.get(`http://localhost:5000/api/employee/department/${id}`, {
+      const responnse = await axios.get(`https://ems-backend-production-8f13.up.railway.app/api/employee/department/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }, 

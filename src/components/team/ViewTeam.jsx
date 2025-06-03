@@ -12,7 +12,7 @@ const ViewTeam = () => {
     const fetchTeams = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/team/${id}/${user.role}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/team/${id}/${user.role}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,

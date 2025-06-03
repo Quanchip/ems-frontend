@@ -16,7 +16,7 @@ const AssignTaskForTeam = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/team', {
+        const res = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/team', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -33,7 +33,7 @@ const AssignTaskForTeam = () => {
       setTaskLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/task/team/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/task/team/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -76,7 +76,7 @@ const AssignTaskForTeam = () => {
     console.log('Data before sending:', task)
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/task/assign/team/${id}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/task/assign/team/${id}`,
         task,
         {
           headers: {
@@ -88,7 +88,7 @@ const AssignTaskForTeam = () => {
       if (response.data.success) {
         try {
           await axios.post(
-            `http://localhost:5000/api/mail/send-task-notify/team/${id}`,
+            `https://ems-backend-production-8f13.up.railway.app/api/mail/send-task-notify/team/${id}`,
             task,
             {
               headers: {

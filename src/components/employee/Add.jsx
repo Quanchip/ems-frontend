@@ -58,7 +58,7 @@ const Add = () => {
       formDataObj.append('key', confirmationKey)
 
       const response = await axios.post(
-        'http://localhost:5000/api/employee/add',
+        'https://ems-backend-production-8f13.up.railway.app/api/employee/add',
         formDataObj,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -67,13 +67,13 @@ const Add = () => {
 
       if (response.data.success) {
         await axios.post(
-          'http://localhost:5000/api/mail/set-email',
+          'https://ems-backend-production-8f13.up.railway.app/api/mail/set-email',
           { email: personalEmail },
           { withCredentials: true }
         )
 
         await axios.post(
-          'http://localhost:5000/api/mail/send-new-password',
+          'https://ems-backend-production-8f13.up.railway.app/api/mail/send-new-password',
           {
             password: newPassword,
             key: confirmationKey,
@@ -84,7 +84,7 @@ const Add = () => {
         alert('Employee added and email sent successfully!')
         setShowEmailBox(false)
         const setSessionClient = await axios.get(
-          'http://localhost:5000/api/mail/getSessionServer',
+          'https://ems-backend-production-8f13.up.railway.app/api/mail/getSessionServer',
           {
             withCredentials: true,
           }

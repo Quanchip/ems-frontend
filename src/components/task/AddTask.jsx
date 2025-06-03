@@ -22,8 +22,8 @@ const AddTask = () => {
     try {
       const endpoint =
         mode === 'team'
-          ? 'http://localhost:5000/api/task/add-team'
-          : 'http://localhost:5000/api/task/add'
+          ? 'https://ems-backend-production-8f13.up.railway.app/api/task/add-team'
+          : 'https://ems-backend-production-8f13.up.railway.app/api/task/add'
 
       const response = await axios.post(endpoint, task, {
         headers: {

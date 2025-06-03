@@ -28,7 +28,7 @@ const AssignTask = () => {
       setTaskLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/task/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/task/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -72,7 +72,7 @@ const AssignTask = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/task/assign/${id}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/task/assign/${id}`,
         task,
         {
           headers: {
@@ -83,7 +83,7 @@ const AssignTask = () => {
 
       if (response.data.success) {
         try {
-          const responeMail = await axios.post(`http://localhost:5000/api/mail/send-task-notify/${id}`,
+          const responeMail = await axios.post(`https://ems-backend-production-8f13.up.railway.app/api/mail/send-task-notify/${id}`,
             task,
             {
               headers: {

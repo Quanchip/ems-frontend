@@ -14,7 +14,7 @@ const TeamList = () => {
     const fetchTeams = async () => {
       setTeamLoading(true)
       try {
-        const response = await axios.get('http://localhost:5000/api/team', {
+        const response = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/team', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

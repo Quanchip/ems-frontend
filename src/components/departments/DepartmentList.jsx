@@ -14,7 +14,7 @@ const DepartmentList = () => {
     const fetchDepartments = async () => {
       setDepLoading(true)
       try {
-        const response = await axios.get('http://localhost:5000/api/department', {
+        const response = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/department', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

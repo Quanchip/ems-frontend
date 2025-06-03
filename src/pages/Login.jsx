@@ -19,7 +19,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", {email, password});
+            const response = await axios.post("https://ems-backend-production-8f13.up.railway.app/api/auth/login", {email, password});
             if(response.data.success){
                 toast.success("Successfully login")
                 login(response.data.user)

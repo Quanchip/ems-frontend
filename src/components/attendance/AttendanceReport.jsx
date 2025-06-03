@@ -32,7 +32,7 @@ const AttendanceReport = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/attendance/report?${query.toString()}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/attendance/report?${query.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

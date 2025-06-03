@@ -21,7 +21,7 @@ const TaskListEmployee = () => {
     try {
       const token = localStorage.getItem('token')
       const response = await axios.get(
-        `http://localhost:5000/api/task/${taskType}/${id}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/task/${taskType}/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ const TaskListEmployee = () => {
         try {
           const token = localStorage.getItem('token')
           const response = await axios.get(
-            `http://localhost:5000/api/team/check-leader/${id}`,
+            `https://ems-backend-production-8f13.up.railway.app/api/team/check-leader/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

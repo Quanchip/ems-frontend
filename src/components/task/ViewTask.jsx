@@ -11,8 +11,8 @@ const ViewTask = () => {
       try {
         const url =
           task_for === 'team'
-            ? `http://localhost:5000/api/task/team/${id}`
-            : `http://localhost:5000/api/task/${id}`
+            ? `https://ems-backend-production-8f13.up.railway.app/api/task/team/${id}`
+            : `https://ems-backend-production-8f13.up.railway.app/api/task/${id}`
 
         const response = await axios.get(url, {
           headers: {

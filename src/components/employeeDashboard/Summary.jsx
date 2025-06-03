@@ -17,7 +17,7 @@ const SummaryCard = () => {
             try {
                 // Get employee ID first
                 const employeeResponse = await axios.get(
-                    `http://localhost:5000/api/employee/${user._id}`,
+                    `https://ems-backend-production-8f13.up.railway.app/api/employee/${user._id}`,
                     {
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     }
@@ -33,7 +33,7 @@ const SummaryCard = () => {
 
                 // Get personal tasks
                 const personalResponse = await axios.get(
-                    `http://localhost:5000/api/task/personalTask/${user._id}`,
+                    `https://ems-backend-production-8f13.up.railway.app/api/task/personalTask/${user._id}`,
                     {
                         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                     }
@@ -42,7 +42,7 @@ const SummaryCard = () => {
                 let teamTasks = [];
                 try {
                     const teamResponse = await axios.get(
-                        `http://localhost:5000/api/task/teamTask/${employeeId}`,
+                        `https://ems-backend-production-8f13.up.railway.app/api/task/teamTask/${employeeId}`,
                         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
                     );
                     if (teamResponse.data.success) {

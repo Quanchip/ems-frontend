@@ -14,7 +14,7 @@ const TaskList = () => {
     const fetchTasks = async () => {
       setTaskLoading(true)
       try {
-        const response = await axios.get('http://localhost:5000/api/task', {
+        const response = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/task', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },

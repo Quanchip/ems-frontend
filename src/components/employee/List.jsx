@@ -15,7 +15,7 @@
             const fetchEmployees = async () => {
                 setEmpLoading(true)
             try {
-                const response = await axios.get('http://localhost:5000/api/employee', {
+                const response = await axios.get('https://ems-backend-production-8f13.up.railway.app/api/employee', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
@@ -36,7 +36,7 @@
                       <img
                         className='rounded-full object-cover'
                         style={{ width: '150px', height: '150px' }}
-                        src={`http://localhost:5000/${emp.userId?.profileImage ?? 'default.png'}`}
+                        src={`https://ems-backend-production-8f13.up.railway.app/${emp.userId?.profileImage ?? 'default.png'}`}
                         alt="profile"
                       />
                     ),

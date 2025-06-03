@@ -30,7 +30,7 @@ const EditTeam = () => {
       setTeamLoading(true)
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/team/${id}`,
+          `https://ems-backend-production-8f13.up.railway.app/api/team/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -63,7 +63,7 @@ const EditTeam = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/team/${id}`,
+        `https://ems-backend-production-8f13.up.railway.app/api/team/${id}`,
         team,
         {
           headers: {

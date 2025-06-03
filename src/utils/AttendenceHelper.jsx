@@ -38,7 +38,7 @@ export const AttendanceHelper = ({ status, employeeId, statusChange }) => {
   const markEmployee = async (status, employeeId) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/attendance/update/${employeeId}`, // Changed to http
+        `https://ems-backend-production-8f13.up.railway.app/api/attendance/update/${employeeId}`, // Changed to http
         { status },
         {
           headers: {
